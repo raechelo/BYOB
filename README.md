@@ -1,6 +1,6 @@
 # BYOB
 
-BYOB, or *B*uild *Y*our *O*wn *B*ackend, is a project intended to test the devleopers skills and knowledge of Express and Knex. The student was to build a relational database as well as a backend with corresponding get, post, and delete endpoints.
+BYOB, or **B**uild **Y**our **O**wn **B**ackend, is a project intended to test the devleopers skills and knowledge of Express and Knex. The student was to build a relational database as well as a backend with corresponding get, post, and delete endpoints.
 
 ## Install/Setup
 
