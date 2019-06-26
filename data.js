@@ -262,9 +262,9 @@ const murders = [
   {
     name: 'William Bonin',
     city: 'Freeway Killers',
-    year: 'The second of the “freeway killers” on this list, Bonin kidnapped, tortured, raped, and killed 14 teenage boys. He was the first California inmate put to death by lethal injection.',
+    year: '1968-1980',
     location: 'Freeways',
-    summary: '1968-1980'
+    summary: 'The second of the “freeway killers” on this list, Bonin kidnapped, tortured, raped, and killed 14 teenage boys. He was the first California inmate put to death by lethal injection.'
   },
   {
     name: 'The Scorecard Killer',
@@ -687,7 +687,7 @@ const murders = [
     summary: 'It was Paul Snider who arranged to have nude photos of Dorothy Stratten sent to Playboy, sending the eventual Playmate of the Year on a path to stardom that would consume Snider with deadly jealousy. He killed Stratten and himself with a 12-gauge shotgun.'
   },
   {
-    name: 'karen Toshima',
+    name: 'Karen Toshima',
     city: 'Westwood',
     year: '1988',
     location: '1000 block of Broxton Avenue',

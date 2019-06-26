@@ -8,10 +8,10 @@ const createCrime = (knex, crime) => {
   }, 'id');
 }
 
-const createLocation = (knex, location) => {
+const createLocation = (knex, crime) => {
   return knex('neighborhood').insert({
-    city: location.city,
-    location: location.location
+    city: crime.city,
+    location: crime.location
   }, 'id');
 }
 
@@ -20,13 +20,19 @@ exports.seed = function(knex, Promise) {
   return knex('crimes').del()
     .then(() => {
       let crimePromises = [];
-      let locationPromises = [];
-        //forEach
         murders.forEach(crime => {
           crimePromises.push(createCrime(knex, crime))
+        })
+        return Promise.all(crimePromises)
+      })
+      .then(() => {
+        let locationPromises = [];
+        murders.forEach(crime => {
           locationPromises.push(createLocation(knex, crime))
         })
-        return Promise.all(crimePromises);
+        return Promise.all(locationPromises);
       })
     .catch(error => console.log(`Error seeding data: ${error}`))
 };
+
+
