@@ -25,14 +25,12 @@ exports.seed = function(knex, Promise) {
         })
         return Promise.all(crimePromises)
       })
-      .then(() => {
-        let locationPromises = [];
-        murders.forEach(crime => {
-          locationPromises.push(createLocation(knex, crime))
-        })
-        return Promise.all(locationPromises);
+    .then(() => {
+      let locationPromises = [];
+      murders.forEach(crime => {
+        locationPromises.push(createLocation(knex, crime))
       })
-    .catch(error => console.log(`Error seeding data: ${error}`))
+      return Promise.all(locationPromises);
+    })
+  .catch(error => console.log(`Error seeding data: ${error}`))
 };
-
-

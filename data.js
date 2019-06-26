@@ -394,21 +394,21 @@ const murders = [
   },
   {
     name: 'The Westside Rapist',
-    city: 'Los Angelos (various locations)',
+    city: 'Los Angeles (various locations)',
     year: '1972-89',
     location: 'multiple',
     summary: 'Prolific serial killer John Floyd Thomas Jr. raped and killed elderly women in their homes throughout the 1970s and 1980s, but he wasn’t arrested until 2009, when a DNA sample linked him to the crimes.'
   },
   {
     name: 'Golden State Killer / East Area Rapist',
-    city: 'Los Angelos (various locations)',
+    city: 'Los Angeles (various locations)',
     year: '1979-86',
     location: 'multiple',
     summary: 'Also known as The Original Night Stalker, the East Area Rapist, and the Diamond Knot Killer. The murderer/rapist’s crimes spanned virtually the entire state and lasted from the late 1970s to the mid-1980s. His identity has recently been discovered and was arrested on April 24, 2018; Joseph James DeAngelo has been charged with eight counts of first-degree murder. His DNA was a 100% match.'
   },
   {
     name: 'The Night Stalker',
-    city: 'Los Angelos (various locations)',
+    city: 'Los Angeles (various locations)',
     year: '1984-85',
     location: 'multiple',
     summary: 'Richard Ramirez was a remorseless Satanic ritualist, rapist, and serial killer who terrorized Northern and Southern California, and he was captured by a group of Angelenos who came to a woman’s rescue. The judge who oversaw his trial said Ramirez exhibited a “cruelty, callousness and viciousness beyond any human understanding.”'
@@ -487,7 +487,7 @@ const murders = [
     name: 'Timothy Joseph McGhee',
     city: 'Northeast Los Angeles',
     year: '1997-2001',
-    location: 'Northeast Los Angelos',
+    location: 'Northeast Los Angeles',
     summary: 'He rapped about the lives he took, boasting of his murders. As the judge who presided over his case put it, he treated killing “as some kind of perverse sport, as if he was hunting human game.”'
   },
   {
@@ -590,21 +590,21 @@ const murders = [
   },
   {
     name: 'The Grim Sleeper',
-    city: 'South Los Angelos',
+    city: 'South Los Angeles',
     year: '1985-2007',
-    location: 'South Los Angelos',
+    location: 'South Los Angeles',
     summary: 'Lonnie David Franklin Jr. got his nickname because investigators believed there was a mysterious 14-year-gap between his killings. Like many serial killers, he targeted drug addicts and prostitutes—Janes Does few people would notice were missing. He was convicted of killing nine women and one teen girl, and detectives believe he may have killed at least 15 more. Also known as The Southside Slayer.'
   },
   {
     name: 'Latasha Harlins',
-    city: 'South Los Angelos',
+    city: 'South Los Angeles',
     year: '1992',
     location: 'Empire Liquor Market and Deli, 91st and Figueroa streets',
     summary: 'A teen in a liquor store/deli put a bottle of juice in her knapsack. The shopkeeper accused her of stealing. A struggle broke out, and the shopkeeper shot Latasha Harlins in the face, lighting one of the fuses that would eventually explode into the 1992 riots.'
   },
   {
     name: 'George "G" Torres',
-    city: 'South Los Angelos',
+    city: 'South Los Angeles',
     year: '2001',
     location: 'Vitello’s at 4349 Tujunga Avenue',
     summary: 'George Torres (AKA “G”) founded the Numero Uno grocery chain and was a big-time political donor whose methods of protecting his empire caught the attention of federal authorities, who convicted him of bribery, racketeering, and solicitation of murder.'
@@ -674,14 +674,14 @@ const murders = [
   },
   {
     name: 'Melanie Howell',
-    city: 'West Los Angelos',
+    city: 'West Los Angeles',
     year: '1976',
     location: '1723 Westgate Avenue #6',
     summary: 'Someone suspicious had been loitering outside Melanie Howell’s apartment, so she called police and stayed elsewhere. On the day she went back home, she was murdered.'
   },
   {
     name: 'Dorothy Stratten',
-    city: 'West Los Angelos',
+    city: 'West Los Angeles',
     year: '1980',
     location: '10881 Clarkson Road',
     summary: 'It was Paul Snider who arranged to have nude photos of Dorothy Stratten sent to Playboy, sending the eventual Playmate of the Year on a path to stardom that would consume Snider with deadly jealousy. He killed Stratten and himself with a 12-gauge shotgun.'
