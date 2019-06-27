@@ -55,7 +55,25 @@ app.get('/api/v1/neighborhoods/:id', (req, res) => {
       } else {
         res.status(404).json({
           error: `Error! 💥 Could not find neighborhood with id ${req.params.id}`
-        })
+        });
       }
     })
+})
+
+app.post('/api/v1/crimes/', (req, res) => {
+  const crime = req.body;
+
+  for (let requiredParam of ['name', 'year', 'location']) {
+    if (!crime[requiredParam]) {
+      return res.status(422).send({error: `Expected format: {name: <String>, year: <Number>, location: <String>. 🎯 You're missing a ${requiredParam} property.}`});
+    }
+  }
+
+  database('crimes').insert(crime, 'id')
+    .then(crime => {
+      res.status(201).json({ id: crime[0] });
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
 })
