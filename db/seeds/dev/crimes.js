@@ -1,4 +1,4 @@
-const murders = require('../../../data.js');
+const murders = require('../../../murderData.js');
 
 const createCrime = (knex, crime) => {
   return knex('crimes').insert(crime);
@@ -6,13 +6,13 @@ const createCrime = (knex, crime) => {
 
 const createLocation = (knex, crime) => {
   return knex('neighborhoods').insert({
-    city: crime.city,
+    city: crime.name,
     population: crime.population
   }, 'id')
   .then(locationId => {
     let crimePromises = [];
 
-    murders.forEach(murder => {
+    crime.murders.forEach(murder => {
       crimePromises.push(
         createCrime(knex, {
           name: murder.name,
@@ -36,5 +36,5 @@ exports.seed = function(knex, Promise) {
     })
     return Promise.all(locationPromises);
   })
-  .catch(error => console.log(`Error seeding data: ${error}`))
+  .catch(error => console.log(`💥 Error seeding data: ${error}`))
 };
