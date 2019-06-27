@@ -1,36 +1,40 @@
 const murders = require('../../../data.js');
 
 const createCrime = (knex, crime) => {
-  return knex('crimes').insert({
-    name: crime.name,
-    year: crime.year,
-    // summary: crime.summary
-  }, 'id');
+  return knex('crimes').insert(crime);
 }
 
 const createLocation = (knex, crime) => {
   return knex('neighborhood').insert({
     city: crime.city,
-    location: crime.location
-  }, 'id');
-}
+    population: crime.population
+  }, 'id')
+  .then(locationId => {
+    let crimePromises = [];
+
+    murders.forEach(murder => {
+      crimePromises.push(
+        createCrime(knex, {
+          name: murder.name,
+          year: murder.year,
+          location: murder.location,
+          neighborhood_id: locationId[0]
+        })
+      )
+    });
+    return Promise.all(crimePromises)
+  })
+};
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
   return knex('crimes').del()
-    .then(() => {
-      let crimePromises = [];
-        murders.forEach(crime => {
-          crimePromises.push(createCrime(knex, crime))
-        })
-        return Promise.all(crimePromises)
-      })
-    .then(() => {
-      let locationPromises = [];
-      murders.forEach(crime => {
-        locationPromises.push(createLocation(knex, crime))
-      })
-      return Promise.all(locationPromises);
+  .then(() => knex('neighborhood').del())
+  .then(() => {
+    let locationPromises = [];
+    murders.forEach(crime => {
+      locationPromises.push(createLocation(knex, crime))
     })
+    return Promise.all(locationPromises);
+  })
   .catch(error => console.log(`Error seeding data: ${error}`))
 };
