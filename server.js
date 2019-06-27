@@ -37,6 +37,24 @@ app.get('/api/v1/crimes/:id', (req, res) => {
     });
 });
 
+app.post('/api/v1/crimes/', (req, res) => {
+  const crime = req.body;
+
+  for (let requiredParam of ['name', 'year', 'location']) {
+    if (!crime[requiredParam]) {
+      return res.status(422).send({error: `Expected format: {name: <String>, year: <Number>, location: <String>. 🎯 You're missing a ${requiredParam} property.}`});
+    }
+  }
+
+  database('crimes').insert(crime, 'id')
+    .then(crime => {
+      res.status(201).json({ id: crime[0] });
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
+
 app.get('/api/v1/neighborhoods', (req, res) => {
   database('neighborhoods').select()
     .then(neighborhoods => {
@@ -58,22 +76,33 @@ app.get('/api/v1/neighborhoods/:id', (req, res) => {
         });
       }
     })
-})
+});
 
-app.post('/api/v1/crimes/', (req, res) => {
-  const crime = req.body;
+app.post('/api/v1/neighborhoods', (req, res) => {
+  const neighborhood = req.body;
 
-  for (let requiredParam of ['name', 'year', 'location']) {
-    if (!crime[requiredParam]) {
-      return res.status(422).send({error: `Expected format: {name: <String>, year: <Number>, location: <String>. 🎯 You're missing a ${requiredParam} property.}`});
+  for (let requiredParam of ['name', 'population']) {
+    if (!neighborhood[requiredParam]) {
+      return res.status(422).send({error: `Expected format: {name: <String>, population: <Number>. 🎯 You're missing a ${requiredParam} property.}`})
     }
   }
 
-  database('crimes').insert(crime, 'id')
-    .then(crime => {
-      res.status(201).json({ id: crime[0] });
+  database('neighborhoods').insert(neighborhood, 'id')
+    .then(neighborhood => {
+      res.status(201).json({id: neighborhood[0] })
     })
     .catch(error => {
-      res.status(500).json({ error });
-    });
+      res.status(500).json({error})
+    })
+})
+
+app.delete('/api/v1/crimes/:id', (req, res) => {
+  database('crimes').where('id', req.params.id).delete()
+    .then(crime => {
+      if (!crime) res.status(422).json('Error! 💥 This crime does not exist! ...yet...')
+      else res.status(200).json('Deleted! 🦖')
+    })
+    .catch(error => {
+      return res.status(500).json({error})
+    })
 })
