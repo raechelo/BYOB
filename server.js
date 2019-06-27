@@ -128,20 +128,30 @@ app.get('/api/v1/neighborhoods/:id', (req, res) => {
 });
 
 app.post('/api/v1/neighborhoods', (req, res) => {
+  // creates a posting endpoint for new neighborhoods
   const neighborhood = req.body;
+  // sets a variable to the request body, which in this case would be a neighborhood
 
   for (let requiredParam of ['name', 'population']) {
+    // this looks for a required parameter of name and population
     if (!neighborhood[requiredParam]) {
+      // if either of the required parameters aren't present
       return res.status(422).send({error: `Expected format: {name: <String>, population: <Number>. 🎯 You're missing a ${requiredParam} property.}`})
+      // return a status of 422 and an error object telling the user what parameter they're missing
     }
   }
 
   database('neighborhoods').insert(neighborhood, 'id')
+  // grabs the neighborhood database and inserts the neighborhood from above with an id
     .then(neighborhood => {
+      // then with that neighborhood...
       res.status(201).json({id: neighborhood[0] })
+      // return a status of 201 and the id of the new neighborhood that has been posted
     })
     .catch(error => {
+      // if there's an error, catch it
       res.status(500).json({error})
+      // and return a status of 500 with a jsonified error object
     })
 })
 
