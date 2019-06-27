@@ -107,13 +107,21 @@ app.get('/api/v1/neighborhoods', (req, res) => {
 });
 
 app.get('/api/v1/neighborhoods/:id', (req, res) => {
+  // this creates the unique endpoint for getting a specific neighborhood
   database('neighborhoods').where('id', req.params.id).select()
+  // this grabs the neighborhood database and looks for an entry with an id that matches our requested parameter id
     .then(neighborhoods => {
+      // then, with that neighborhood
       if (neighborhoods.length) {
+        // if there is a neighborhood that is associated with said id
         res.status(200).json(neighborhoods)
+        // return a status of 200 and a json version of the neighborhoods
       } else {
+        // otherwise
         res.status(404).json({
+          // return a status of 404 and a json version of the following error object
           error: `Error! 💥 Could not find neighborhood with id ${req.params.id}`
+          // tells the user there is no neighborhood with the requested parameters id
         });
       }
     })
