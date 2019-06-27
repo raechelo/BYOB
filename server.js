@@ -156,12 +156,19 @@ app.post('/api/v1/neighborhoods', (req, res) => {
 })
 
 app.delete('/api/v1/crimes/:id', (req, res) => {
+  // this creates the delete endpoint for an individual crime
   database('crimes').where('id', req.params.id).delete()
+  // this grabs the crime database and finds an entry where the id is the same as the requested parameter id
     .then(crime => {
+      // then with that crime...
       if (!crime) res.status(422).json('Error! 💥 This crime does not exist! ...yet...')
+      // if there IS NO crime, return a 422 status, telling the user that crime does not exist
       else res.status(200).json('Deleted! 🦖')
+      // if there is a crime, return a status of 200 and a message of deleted
     })
     .catch(error => {
+      // if there's an error, catch it
       return res.status(500).json({error})
+      // and return a status of 500 as well as a json error object
     })
 })
