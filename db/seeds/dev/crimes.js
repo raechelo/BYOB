@@ -5,7 +5,7 @@ const createCrime = (knex, crime) => {
 }
 
 const createLocation = (knex, crime) => {
-  return knex('neighborhood').insert({
+  return knex('neighborhoods').insert({
     city: crime.city,
     population: crime.population
   }, 'id')
@@ -28,7 +28,7 @@ const createLocation = (knex, crime) => {
 
 exports.seed = function(knex, Promise) {
   return knex('crimes').del()
-  .then(() => knex('neighborhood').del())
+  .then(() => knex('neighborhoods').del())
   .then(() => {
     let locationPromises = [];
     murders.forEach(crime => {
