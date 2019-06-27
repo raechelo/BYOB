@@ -7,7 +7,7 @@ There are a total of seven endpoints to hit with this API, four GET, two POST, a
 
 ### GET
 
-`/api/v1/crimes/`
+#### `/api/v1/crimes/`
 
 In order to retreive all the crimes, simply fetch the crimes with the url `http://localhost:3000/api/v1/crimes/`. Here's a snippet of what you would receive back:
 
