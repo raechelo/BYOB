@@ -10,8 +10,9 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTable('crimes', table => {
+      table.increments('id').primary();
       table.string('year');
-      table.string('name')
+      table.string('name');
       table.string('location');
       table.integer('neighborhood_id').unsigned();
       table.foreign('neighborhood_id').references('neighborhoods.id');
