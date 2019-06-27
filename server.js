@@ -63,20 +63,30 @@ app.get('/api/v1/crimes/:id', (req, res) => {
 });
 
 app.post('/api/v1/crimes/', (req, res) => {
+  // this creates the endpoint for posting a new crime
   const crime = req.body;
+  // this creates a variable of crime for the request body
 
   for (let requiredParam of ['name', 'year', 'location']) {
+    // this looks for a required parameter of name, year, AND location
     if (!crime[requiredParam]) {
+      // if the crime submitted doesn't have one oft those...
       return res.status(422).send({error: `Expected format: {name: <String>, year: <Number>, location: <String>. 🎯 You're missing a ${requiredParam} property.}`});
+      // we're going to return a status of 422 and an error message telling the user to include wahtever parameter they're missing
     }
   }
 
   database('crimes').insert(crime, 'id')
+  // this grabs the crimes table from our knex file and inserts the crime from above with the id
     .then(crime => {
+      // then, with that crime...
       res.status(201).json({ id: crime[0] });
+      // we want to return a status of 201 and an object with the id of the crime, indicating the user has properly posted a new crime, and should receive the new crimes id back as a response
     })
     .catch(error => {
+      // if there's an error with posting, catch it
       res.status(500).json({ error });
+      // return a status of 500 and a jsonified error object
     });
 });
 
