@@ -36,13 +36,57 @@ app.get('/api/v1/crimes', (req, res) => {
   });
 });
 
+app.get('/api/v1/crimes/:id', (req, res) => {
+  // this creates the endpoint for each unique crime id
+  database('crimes').where('id', req.params.id).select()
+  // this uses our database variable to search the crime table for an idea that matches our requested parameter id and selects it
+    .then(crimes => {
+      // then, with that crime...
+      if (crimes.length) {
+        // if there is a crime at all
+        res.status(200).json(crimes);
+        // return a status of 200 and a json version of the crime
+      } else {
+        // otherwise, if there is not a crime
+        res.status(404).json({
+          // we'll return a status of 404 and a json version of the following
+          error: `Error! 💥 Could not find crime with id ${req.params.id}`
+          // error object with the message of not finding specific id
+        })
+      }
+    })
+    .catch(error => {
+      // catch the error if an error occurs
+      res.status(500).json({error})
+      // return a status of 500 and a json version of the error object
+    });
+});
+
+app.post('/api/v1/crimes/', (req, res) => {
+  const crime = req.body;
+
+  for (let requiredParam of ['name', 'year', 'location']) {
+    if (!crime[requiredParam]) {
+      return res.status(422).send({error: `Expected format: {name: <String>, year: <Number>, location: <String>. 🎯 You're missing a ${requiredParam} property.}`});
+    }
+  }
+
+  database('crimes').insert(crime, 'id')
+    .then(crime => {
+      res.status(201).json({ id: crime[0] });
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
+
 app.get('/api/v1/neighborhoods', (req, res) => {
   // this creates the /api/v1/neighborhood endpoint which a developer could hit and retreive the information for all the neighborhoods
-  database('neighborhood').select()
+  database('neighborhoods').select()
   // this uses the database variable and finds the neighborhood table, selecting it
-    .then(neighborhood => {
+    .then(neighborhoods => {
       // then with the neighborhood table...
-      res.status(200).json(neighborhood);
+      res.status(200).json(neighborhoods);
       // we want to return a status of 200 and a json version of the neighborhood table
     })
     .catch(error => {
@@ -51,3 +95,45 @@ app.get('/api/v1/neighborhoods', (req, res) => {
       // we're going to return a status of 500, server error, and a json version of the error object
     });
 });
+
+app.get('/api/v1/neighborhoods/:id', (req, res) => {
+  database('neighborhoods').where('id', req.params.id).select()
+    .then(neighborhoods => {
+      if (neighborhoods.length) {
+        res.status(200).json(neighborhoods)
+      } else {
+        res.status(404).json({
+          error: `Error! 💥 Could not find neighborhood with id ${req.params.id}`
+        });
+      }
+    })
+});
+
+app.post('/api/v1/neighborhoods', (req, res) => {
+  const neighborhood = req.body;
+
+  for (let requiredParam of ['name', 'population']) {
+    if (!neighborhood[requiredParam]) {
+      return res.status(422).send({error: `Expected format: {name: <String>, population: <Number>. 🎯 You're missing a ${requiredParam} property.}`})
+    }
+  }
+
+  database('neighborhoods').insert(neighborhood, 'id')
+    .then(neighborhood => {
+      res.status(201).json({id: neighborhood[0] })
+    })
+    .catch(error => {
+      res.status(500).json({error})
+    })
+})
+
+app.delete('/api/v1/crimes/:id', (req, res) => {
+  database('crimes').where('id', req.params.id).delete()
+    .then(crime => {
+      if (!crime) res.status(422).json('Error! 💥 This crime does not exist! ...yet...')
+      else res.status(200).json('Deleted! 🦖')
+    })
+    .catch(error => {
+      return res.status(500).json({error})
+    })
+})
