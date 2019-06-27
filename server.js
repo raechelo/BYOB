@@ -22,11 +22,12 @@ app.get('/api/v1/crimes', (req, res) => {
 });
 
 app.get('/api/v1/neighborhoods', (req, res) => {
-  database('neighborhood').select()
-    .then(neighborhood => {
-      res.status(200).json(neighborhood);
+  database('neighborhoods').select()
+    .then(neighborhoods => {
+      res.status(200).json(neighborhoods);
     })
     .catch(error => {
       res.status(500).json({error});       
     });
 });
+
