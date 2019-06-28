@@ -78,21 +78,21 @@ app.get('/api/v1/neighborhoods/:id', (req, res) => {
     })
 });
 
-app.post('/api/v1/neighborhoods', (req, res) => {
+app.post('/api/v1/neighborhoods/', (req, res) => {
   const neighborhood = req.body;
 
-  for (let requiredParam of ['name', 'population']) {
+  for (let requiredParam of ['city', 'population']) {
     if (!neighborhood[requiredParam]) {
-      return res.status(422).send({error: `Expected format: {name: <String>, population: <Number>. 🎯 You're missing a ${requiredParam} property.}`})
+      return res.status(422).send({error: `Expected format: {city: <String>, population: <Number>. 🎯 You're missing a ${requiredParam} property.}`})
     }
   }
 
   database('neighborhoods').insert(neighborhood, 'id')
-    .then(neighborhood => {
-      res.status(201).json({id: neighborhood[0] })
+  .then(neighborhood => {
+      res.status(201).json({ id: neighborhood[0] })
     })
     .catch(error => {
-      res.status(500).json({error})
+      res.status(500).json({ error })
     })
 })
 
