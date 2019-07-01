@@ -73,6 +73,14 @@ If you'd like to see a specific crime, you'll need to request it from the url. F
 ]
 ```
 
+If you input a crime with an id that is not available, you'll receive a response of the following:
+
+```
+{
+    "error": "Error! 💥 Could not find crime with id 299"
+}
+```
+
 #### `/api/v1/neighborhood/:id`
 
 Should you want to look at a specific neighborhood, you could fetch from `http://localhost:3000/api/v1/neighborhoods/6`. You would receive as a response:
@@ -86,6 +94,14 @@ Should you want to look at a specific neighborhood, you could fetch from `http:/
         "updated_at": "2019-06-27T16:48:42.975Z"
     }
 ]
+```
+
+Should you input a neighborhood id that is not available, you'll receive:
+
+```
+{
+    "error": "Error! 💥 Could not find neighborhood with id 299"
+}
 ```
 
 ### POST

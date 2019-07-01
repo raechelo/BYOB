@@ -8,10 +8,6 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.json());
 
-app.listen(app.get('port'), () => {
-  console.log(`App is running 🚀`);
-});
-
 app.get('/', (req, res) => {
   res.status(200).json('Hello world!');
 });
@@ -38,7 +34,7 @@ app.get('/api/v1/crimes/:id', (req, res) => {
       }
     })
     .catch(error => {
-      res.status(500).json({error})
+      res.status(500).json({ error: 'Could not find endpoint' })
     });
 });
 
@@ -66,7 +62,7 @@ app.get('/api/v1/neighborhoods', (req, res) => {
       res.status(200).json(neighborhoods);
     })
     .catch(error => {
-      res.status(500).json({error});       
+      res.status(500).json({ error });       
     });
 });
 
@@ -111,3 +107,7 @@ app.delete('/api/v1/crimes/:id', (req, res) => {
       return res.status(500).json({error})
     })
 })
+
+app.listen(app.get('port'), () => {
+  console.log(`App is running 🚀`);
+});
