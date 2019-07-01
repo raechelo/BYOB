@@ -153,7 +153,9 @@ A user could post a new neighborhood were a crime was committed. Should they wan
 The happy response would look like this:
 
 ```
-
+{
+    "id": 120
+}
 
 ```
 
