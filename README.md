@@ -2,6 +2,9 @@
 
 BYOB, or **B**uild **Y**our **O**wn **B**ackend, is a project intended to test the devleopers skills and knowledge of Express and Knex. The student was to build a relational database as well as a backend with corresponding get, post, and delete endpoints.
 
+## Deployment
+This app is deployed [here](https://last-murder-onthe-left-la.herokuapp.com/).
+
 ## API Endpoints Available
 There are a total of seven endpoints to hit with this API, four GET, two POST, and one DELETE. They are described below.
 
