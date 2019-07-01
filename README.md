@@ -184,11 +184,6 @@ If no crime exists with the requested id, in this instance 1, the user would rec
 - Knex
 - Express
 
-## Screenshots
-
-
-### Schema
-
 
 ## Learning Goals
 - Major learning points for this project were to really dig deep into using Knex and learn how to effetively make a relational database. In addition, the developer was to utilize and cement their skills with Node to create corresponding endpoints.
